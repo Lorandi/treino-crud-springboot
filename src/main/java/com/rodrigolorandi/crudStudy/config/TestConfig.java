@@ -2,6 +2,7 @@ package com.rodrigolorandi.crudStudy.config;
 
 import com.rodrigolorandi.crudStudy.entities.User;
 import com.rodrigolorandi.crudStudy.repositories.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -11,10 +12,10 @@ import java.util.Arrays;
 
 @Configuration
 @Profile(("test"))
+@RequiredArgsConstructor
 public class TestConfig implements CommandLineRunner {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Override
     public void run(String... args) throws Exception {
