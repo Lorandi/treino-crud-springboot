@@ -17,7 +17,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrderResource {
 
-    private final OrderRepository repository;
     private final OrderService service;
 
     @GetMapping

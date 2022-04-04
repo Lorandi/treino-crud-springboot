@@ -18,7 +18,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserResource {
 
-    private final UserRepository repository;
     private final UserService service;
 
     @GetMapping

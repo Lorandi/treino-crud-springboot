@@ -2,10 +2,12 @@ package com.rodrigolorandi.crudStudy.config;
 
 import com.rodrigolorandi.crudStudy.entities.Category;
 import com.rodrigolorandi.crudStudy.entities.Order;
+import com.rodrigolorandi.crudStudy.entities.Product;
 import com.rodrigolorandi.crudStudy.entities.User;
 import com.rodrigolorandi.crudStudy.entities.enums.OrderStatus;
 import com.rodrigolorandi.crudStudy.repositories.CategoryRepository;
 import com.rodrigolorandi.crudStudy.repositories.OrderRepository;
+import com.rodrigolorandi.crudStudy.repositories.ProductRepository;
 import com.rodrigolorandi.crudStudy.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,7 @@ public class TestConfig implements CommandLineRunner {
     private final UserRepository userRepository;
     private final OrderRepository orderRepository;
     private final CategoryRepository categoryRepository;
+    private final ProductRepository productRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -41,14 +44,12 @@ public class TestConfig implements CommandLineRunner {
         Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.WAITING_PAYMENT,u1);
         orderRepository.saveAll(Arrays.asList(o1, o2,o3));
 
-
-
-//        Product p1 = new Product(null, "The Lord of the Rings", "Lorem ipsum dolor sit amet, consectetur.", 90.5, "");
-//        Product p2 = new Product(null, "Smart TV", "Nulla eu imperdiet purus. Maecenas ante.", 2190.0, "");
-//        Product p3 = new Product(null, "Macbook Pro", "Nam eleifend maximus tortor, at mollis.", 1250.0, "");
-//        Product p4 = new Product(null, "PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "");
-//        Product p5 = new Product(null, "Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
-//        productyRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
+        Product p1 = new Product(null, "The Lord of the Rings", "Lorem ipsum dolor sit amet, consectetur.", 90.5, "");
+        Product p2 = new Product(null, "Smart TV", "Nulla eu imperdiet purus. Maecenas ante.", 2190.0, "");
+        Product p3 = new Product(null, "Macbook Pro", "Nam eleifend maximus tortor, at mollis.", 1250.0, "");
+        Product p4 = new Product(null, "PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "");
+        Product p5 = new Product(null, "Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
+        productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
 
     }
 

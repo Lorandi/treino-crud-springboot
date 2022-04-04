@@ -1,8 +1,7 @@
 package com.rodrigolorandi.crudStudy.resources;
 
-import com.rodrigolorandi.crudStudy.entities.Category;
-import com.rodrigolorandi.crudStudy.repositories.CategoryRepository;
-import com.rodrigolorandi.crudStudy.services.CategoryService;
+import com.rodrigolorandi.crudStudy.entities.Product;
+import com.rodrigolorandi.crudStudy.services.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,19 +12,19 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/categories")
+@RequestMapping("/products")
 @RequiredArgsConstructor
-public class CategoryResource {
+public class ProductResource {
 
-    private final CategoryService service;
+    private final ProductService service;
 
     @GetMapping
-    public ResponseEntity<List<Category>> findAll(){
+    public ResponseEntity<List<Product>> findAll(){
         return ResponseEntity.ok().body(service.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Category> findById(@PathVariable  Long id) {
+    public ResponseEntity<Product> findById(@PathVariable  Long id) {
         return ResponseEntity.ok().body(service.findById(id));
     }
 }
