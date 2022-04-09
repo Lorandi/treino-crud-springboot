@@ -28,8 +28,12 @@ public class UserService {
 //        return obj.get();
 //    }
 
-
     public User findById(Long id){
         return repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
+    public User insert(User user){
+        return repository.save((user));
+
     }
 }
