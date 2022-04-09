@@ -23,17 +23,15 @@ public class UserService {
         return repository.findAll();
     }
 
-//    public User findById(Long id){
-//        Optional<User> obj = repository.findById(id);
-//        return obj.get();
-//    }
-
     public User findById(Long id){
         return repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     public User insert(User user){
         return repository.save((user));
+    }
 
+    public void delete(Long id) {
+        repository.deleteById(id);
     }
 }

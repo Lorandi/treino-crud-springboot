@@ -5,6 +5,7 @@ import com.rodrigolorandi.crudStudy.repositories.UserRepository;
 import com.rodrigolorandi.crudStudy.services.UserService;
 import lombok.RequiredArgsConstructor;
 
+import org.hibernate.annotations.Parameter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,7 @@ import java.util.List;
 public class UserResource {
 
     private final UserService service;
+    private final UserRepository repository;
 
     @GetMapping
     public ResponseEntity<List<User>> findAll(){
@@ -28,7 +30,9 @@ public class UserResource {
 
     @GetMapping("/{id}")
     public ResponseEntity<User> findById(@PathVariable  Long id) {
-        return ResponseEntity.ok().body(service.findById(id));
+        User obj =service.findById(id);
+        return ResponseEntity.ok().body(obj);
+
     }
 
     @PostMapping
@@ -42,5 +46,15 @@ public class UserResource {
 //    public User insert(@RequestBody User user){
 //        return service.insert(user);
 //    }
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(@PathVariable Long id){
+        var user =  service.findById(id);
+        service.delete(user.getId());
+//
+//        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 
 }
