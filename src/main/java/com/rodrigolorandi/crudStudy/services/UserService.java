@@ -34,4 +34,23 @@ public class UserService {
     public void delete(Long id) {
         repository.deleteById(id);
     }
+
+    public User update(Long id,User user){
+//        User entity = repository.getById(id);
+//        updateData(entity,obj);
+//        return repository.save(entity);
+
+        return repository.findById(id)
+                .map(r -> {
+                    r.setName(user.getName());
+                    r.setEmail(user.getEmail());
+                    r.setPhone(user.getPhone());
+                    return repository.save(r);
+                }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+//    private void updateData(User entity, User obj) {
+//        entity.setName(obj.getName());
+//        entity.setEmail(obj.getEmail());
+//        entity.setPhone(obj.getPhone());
+//    }
 }
