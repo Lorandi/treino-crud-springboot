@@ -2,6 +2,7 @@ package com.rodrigolorandi.crudStudy.services;
 
 import com.rodrigolorandi.crudStudy.entities.User;
 import com.rodrigolorandi.crudStudy.repositories.UserRepository;
+import com.rodrigolorandi.crudStudy.services.exceptions.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,8 @@ public class UserService {
     }
 
     public User findById(Long id){
-        return repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+//        return repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public User insert(User user){
