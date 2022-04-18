@@ -55,7 +55,8 @@ public class UserService {
                     r.setEmail(user.getEmail());
                     r.setPhone(user.getPhone());
                     return repository.save(r);
-                }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+//                }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+                }).orElseThrow(() -> new ResourceNotFoundException(id));
     }
 //    private void updateData(User entity, User obj) {
 //        entity.setName(obj.getName());
