@@ -2,8 +2,10 @@ package com.rodrigolorandi.crudStudy.services;
 
 import com.rodrigolorandi.crudStudy.entities.User;
 import com.rodrigolorandi.crudStudy.repositories.UserRepository;
+import com.rodrigolorandi.crudStudy.services.exceptions.DatabaseException;
 import com.rodrigolorandi.crudStudy.services.exceptions.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -34,7 +36,12 @@ public class UserService {
     }
 
     public void delete(Long id) {
-        repository.deleteById(id);
+
+        try{
+            repository.deleteById(id);
+        } catch (DataIntegrityViolationException e){
+            throw new DatabaseException(e.getMessage());
+        }
     }
 
     public User update(Long id,User user){
